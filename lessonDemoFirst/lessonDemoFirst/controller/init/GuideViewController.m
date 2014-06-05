@@ -63,7 +63,7 @@
 }
 
 -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    NSLog(@"%f",(pageControl_.numberOfPages+1/5.0)*scrollView.frame.size.width);
+    NSLog(@"%f",(pageControl_.numberOfPages+1/10.0)*scrollView.frame.size.width);
     if(scrollView.contentOffset.x>(pageControl_.numberOfPages-1+1/5.0)*scrollView.frame.size.width){
         [UIView animateWithDuration:.5 animations:^{
             self.view.alpha=0;
@@ -94,50 +94,52 @@
     }
     pageControl_.numberOfPages=imagePaths.count;
     scrollView_.contentSize=CGSizeMake(scrollView_.frame.size.width*[imagePaths count], scrollView_.frame.size.height);
-    UIImageView *lastImageView=nil;
-    scrollView_.translatesAutoresizingMaskIntoConstraints = NO;
+//    UIImageView *lastImageView=nil;
+//    scrollView_.translatesAutoresizingMaskIntoConstraints = NO;
     for(int i=0;i<[imagePaths count];i++){
-//        UIImageView *imageView=[[UIImageView alloc] initWithFrame:scrollView_.frame];
-        UIImageView *imageView=[[UIImageView alloc] init];
-        imageView.translatesAutoresizingMaskIntoConstraints=NO;
+        UIImageView *imageView=[[UIImageView alloc] initWithFrame:scrollView_.frame];
+        imageView.center=CGPointMake(scrollView_.center.x+scrollView_.frame.size.width*i, scrollView_.center.y);
         [scrollView_ addSubview:imageView];
-        if(!lastImageView){
-            [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[imageView(==scrollView_)]"
-                                                                                options:0
-                                                                                metrics:nil
-                                                                                  views:NSDictionaryOfVariableBindings(imageView,scrollView_)]];
-            [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[imageView(==scrollView_)]"
-                                                                                options:0
-                                                                                metrics:nil
-                                                                                  views:NSDictionaryOfVariableBindings(imageView,scrollView_)]];
-        }else{
-            [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[lastImageView][imageView(==scrollView_)]"
-                                                                                options:NSLayoutFormatAlignAllTop
-                                                                                metrics:nil
-                                                                                  views:NSDictionaryOfVariableBindings(lastImageView,imageView,scrollView_)]];
-            [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[imageView(==scrollView_)]"
-                                                                                options:0
-                                                                                metrics:nil
-                                                                                  views:NSDictionaryOfVariableBindings(lastImageView,imageView,scrollView_)]];
-        }
-        
-        imageView.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.3];
-//        imageView.center=CGPointMake(scrollView_.center.x+scrollView_.frame.size.width*i, scrollView_.center.y);
+
+//        UIImageView *imageView=[[UIImageView alloc] init];
+//        imageView.translatesAutoresizingMaskIntoConstraints=NO;
+//        [scrollView_ addSubview:imageView];
+//        if(!lastImageView){
+//            [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[imageView(==scrollView_)]"
+//                                                                                options:0
+//                                                                                metrics:nil
+//                                                                                  views:NSDictionaryOfVariableBindings(imageView,scrollView_)]];
+//            [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[imageView(==scrollView_)]"
+//                                                                                options:0
+//                                                                                metrics:nil
+//                                                                                  views:NSDictionaryOfVariableBindings(imageView,scrollView_)]];
+//        }else{
+//            [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"[lastImageView][imageView(==scrollView_)]"
+//                                                                                options:NSLayoutFormatAlignAllTop
+//                                                                                metrics:nil
+//                                                                                  views:NSDictionaryOfVariableBindings(lastImageView,imageView,scrollView_)]];
+//            [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[imageView(==scrollView_)]"
+//                                                                                options:0
+//                                                                                metrics:nil
+//                                                                                  views:NSDictionaryOfVariableBindings(lastImageView,imageView,scrollView_)]];
+//        }
+//        
+//        imageView.backgroundColor=[[UIColor blackColor] colorWithAlphaComponent:.3];
         imageView.contentMode=UIViewContentModeScaleAspectFit;
         [imageView setImageWithURL:imagePaths[i]];
-        lastImageView=imageView;
+//        lastImageView=imageView;
     }
-    if(lastImageView){
-        [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[lastImageView]|"
-                                                                            options:0
-                                                                            metrics:nil
-                                                                              views:NSDictionaryOfVariableBindings(lastImageView,scrollView_)]];
-        [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lastImageView]|"
-                                                                            options:0
-                                                                            metrics:nil
-                                                                              views:NSDictionaryOfVariableBindings(lastImageView,scrollView_)]];
-
-    }
+//    if(lastImageView){
+//        [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[lastImageView]|"
+//                                                                            options:0
+//                                                                            metrics:nil
+//                                                                              views:NSDictionaryOfVariableBindings(lastImageView,scrollView_)]];
+//        [scrollView_ addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[lastImageView]|"
+//                                                                            options:0
+//                                                                            metrics:nil
+//                                                                              views:NSDictionaryOfVariableBindings(lastImageView,scrollView_)]];
+//
+//    }
 
 }
 

@@ -29,7 +29,7 @@
 {
     news_=[NSMutableArray new];
     [super viewDidLoad];
-    
+    [self requestNewsInfos];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -49,7 +49,13 @@
     }
     cell.titleLabel.text=info.title;
     cell.contentLabel.text=info.summary;
-    cell.dateLabel.text=info.pubDate;
+    //日期格式转换
+    NSDateFormatter *formatter=[NSDateFormatter new];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
+    NSDate *date=[formatter dateFromString:info.pubDate];
+    NSDateFormatter *strFormatter=[NSDateFormatter new];
+    [strFormatter setDateFormat:@"MM-dd HH:mm"];
+    cell.dateLabel.text=[strFormatter stringFromDate:date];
     return cell;
 }
 

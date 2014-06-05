@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
     [_backgroundView setImageWithURL:@"http://www.baidu.com/img/bdlogo.gif" finish:^(UIImage *image, NSError *error) {
-        [UIView animateWithDuration:3 animations:^{
+        [UIView animateWithDuration:1 animations:^{
             _backgroundView.transform=CGAffineTransformMakeScale(2, 2);
             _backgroundView.alpha=0;
         } completion:^(BOOL finished) {
