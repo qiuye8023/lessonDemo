@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TopNavViewController">
+            <connections>
+                <outlet property="contentScrollView_" destination="aqq-tA-57a" id="4rp-bJ-ihJ"/>
+                <outlet property="titleScrollView_" destination="AKV-f9-L66" id="oZc-91-xEQ"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKV-f9-L66">
+                    <rect key="frame" x="68" y="0.0" width="252" height="40"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="DGu-FR-geD"/>
+                    </constraints>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J5g-H1-IZi">
+                    <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="2Uu-zD-oQe"/>
+                        <constraint firstAttribute="width" constant="60" id="bIh-Qg-x43"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <state key="normal" title="推荐">
+                        <color key="titleColor" red="0.77217741939999995" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqq-tA-57a">
+                    <rect key="frame" x="0.0" y="40" width="320" height="528"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="AKV-f9-L66" firstAttribute="leading" secondItem="J5g-H1-IZi" secondAttribute="trailing" constant="8" id="D8s-2y-xMB"/>
+                <constraint firstItem="J5g-H1-IZi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UiE-dd-dnF"/>
+                <constraint firstItem="AKV-f9-L66" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WSl-uI-HdG"/>
+                <constraint firstAttribute="trailing" secondItem="AKV-f9-L66" secondAttribute="trailing" id="bSe-YY-m97"/>
+                <constraint firstItem="AKV-f9-L66" firstAttribute="height" secondItem="J5g-H1-IZi" secondAttribute="height" id="dFd-fZ-Ndv"/>
+                <constraint firstItem="aqq-tA-57a" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jNK-8t-dem"/>
+                <constraint firstItem="J5g-H1-IZi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="new-mT-1RQ"/>
+                <constraint firstAttribute="bottom" secondItem="aqq-tA-57a" secondAttribute="bottom" id="omV-ro-sbS"/>
+                <constraint firstItem="aqq-tA-57a" firstAttribute="top" secondItem="J5g-H1-IZi" secondAttribute="bottom" id="rEa-vk-l6Z"/>
+                <constraint firstAttribute="trailing" secondItem="aqq-tA-57a" secondAttribute="trailing" id="wTW-aA-ChK"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+</document>
