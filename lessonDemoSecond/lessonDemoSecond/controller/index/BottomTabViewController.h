@@ -12,7 +12,6 @@
 
 @interface BottomTabViewController : BaseTabbarController{
     GuideViewController *guideVC_;
-
 }
 
 @end

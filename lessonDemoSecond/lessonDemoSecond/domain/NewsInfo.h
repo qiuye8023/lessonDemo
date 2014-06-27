@@ -17,6 +17,7 @@
 @property(nonatomic,copy) NSString *pubDate;
 @property(nonatomic,copy) NSString *source;
 @property(nonatomic,copy) NSString *summary;
+@property(nonatomic,copy) NSString *description;
 
 -(id)initWithDictionary:(NSDictionary *)dic;
 

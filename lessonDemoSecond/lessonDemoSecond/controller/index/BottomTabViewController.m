@@ -26,12 +26,12 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    //加载引导页
-    if(!guideVC_){
-        guideVC_=[[GuideViewController alloc] initWithNibName:@"GuideViewController" bundle:nil];
-        [self addChildViewController:guideVC_];
-        [self.view addSubview:guideVC_.view];
-    }
+//    //加载引导页
+//    if(!guideVC_){
+//        guideVC_=[[GuideViewController alloc] initWithNibName:@"GuideViewController" bundle:nil];
+//        [self addChildViewController:guideVC_];
+//        [self.view addSubview:guideVC_.view];
+//    }
 }
 
 - (void)viewDidLoad
@@ -42,6 +42,7 @@
     UIButton *readBtn=[[UIButton alloc] initWithTitle:@"订阅" icon:@"btn_read"];
     UIButton *imageBtn=[[UIButton alloc] initWithTitle:@"图片" icon:@"btn_image"];
     UIButton *videoBtn=[[UIButton alloc] initWithTitle:@"视频" icon:@"btn_video"];
+    self.tabBarBackgroundImage=[UIImage imageNamed:@"tab_bg"];
     self.tabBarBtnArray=[@[newsBtn,readBtn,imageBtn,videoBtn] mutableCopy];
     //第一个页面
     TopNavViewController *topNav=[[TopNavViewController alloc] initWithNibName:@"TopNavViewController" bundle:nil];

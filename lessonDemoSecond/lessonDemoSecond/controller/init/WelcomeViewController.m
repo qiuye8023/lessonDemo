@@ -42,6 +42,7 @@
         //根据图片地址获取网络logo图片
         if(logoPath){
             [backgroundView_ setImageWithURL:[NSURL URLWithString:logoPath] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                [MBProgressHUD hideHUDForView:[(WelcomeViewController *)obj view] animated:YES];
                 [UIView animateWithDuration:3 animations:^{
                     view.transform=CGAffineTransformMakeScale(2, 2);
                     view.alpha=0;
@@ -52,8 +53,8 @@
         }else{
             [obj toGuideViewController];
         }
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     // Do any additional setup after loading the view from its nib.
 }
 

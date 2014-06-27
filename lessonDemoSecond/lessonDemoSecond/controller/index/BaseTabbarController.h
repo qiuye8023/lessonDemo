@@ -18,11 +18,11 @@
 @end
 
 @interface BaseTabbarController : UITabBarController {
-    UIImageView *bgView_;
     BOOL  hide_;
     BOOL isHidden_;
 
 }
+@property(nonatomic,retain) UIImageView *bgView_;
 @property(nonatomic,assign,readonly) NSInteger currentIndex;
 @property(nonatomic,retain) UIImage *backgroundImage;//未被选中时的背景图
 @property(nonatomic,retain) UIImage *selectedImage;//选中时的背景图片

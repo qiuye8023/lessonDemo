@@ -1,19 +1,18 @@
 //
 //  TopNavViewController.h
-//  lessonTest
+//  lessonDemoSecond
 //
-//  Created by sky on 14-5-22.
-//  Copyright (c) 2014年 com.grassinfo. All rights reserved.
+//  Created by sky on 14-6-14.
+//  Copyright (c) 2014年 sky. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "GuideViewController.h"
-#import "BaseTabbarController.h"
 
-@interface TopNavViewController : UIViewController{
+@interface TopNavViewController : UIViewController<UIScrollViewDelegate>{
     IBOutlet UIScrollView *titleScrollView_;
     IBOutlet UIScrollView *contentScrollView_;
     UIView *titleSelectBg_;
+
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "NewsInfo.h"
 #import "MBProgressHUD.h"
 #import "NewsTableViewCell.h"
+#import "NewsDetailViewController.h"
 
 @interface AnnouncementListViewController ()
 
@@ -33,15 +34,16 @@
     announcements_=[NSMutableArray new];
     [super viewDidLoad];
     //网络加载第一页公告
-    [self requestAnnouncementByPage:currentPage_];
+    [self requestAnnouncementByPage:currentPage_ shouldRefresh:YES];
     MJRefreshHeaderView *headerView=[[MJRefreshHeaderView alloc] initWithScrollView:tableView_ beginRefreshingBlock:^(MJRefreshBaseView *refreshView) {
-        [announcements_ removeAllObjects];
+        refreshView_=refreshView;
         currentPage_=1;
-        [self requestAnnouncementByPage:currentPage_];
+        [self requestAnnouncementByPage:currentPage_ shouldRefresh:YES];
     }];
     [tableView_ addSubview:headerView];
     MJRefreshFooterView *footerView=[[MJRefreshFooterView alloc] initWithScrollView:tableView_ beginRefreshingBlock:^(MJRefreshBaseView *refreshView) {
-        [self requestAnnouncementByPage:++currentPage_];
+        refreshView_=refreshView;
+        [self requestAnnouncementByPage:++currentPage_ shouldRefresh:NO];
     }];
     [tableView_ addSubview:footerView];
     // Do any additional setup after loading the view from its nib.
@@ -53,11 +55,13 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)requestAnnouncementByPage:(NSInteger)page{
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+-(void)requestAnnouncementByPage:(NSInteger)page shouldRefresh:(BOOL)refresh{
     BaseService *base=[[BaseService alloc] init];
     base.url=[NSString stringWithFormat:@"http://api.blbaidu.cn/API/News.ashx?cid=205&pageNo=%d",page];
     [base requestWithCompletionHandler:^(NSString *responseStr, NSURLResponse *response, NSError *error) {
+        if(refresh){
+            [announcements_ removeAllObjects];
+        }
         //解析json字符串
         if(responseStr){
             NSDictionary *responseDic=[responseStr objectFromJSONString];
@@ -73,7 +77,7 @@
                 }
             }
         }
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [refreshView_ endRefreshing];
     }];
 }
 
@@ -97,6 +101,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NewsInfo *info=announcements_[indexPath.row];
+    NSLog(@"id:%ld",info.newsId);
+    NewsDetailViewController *newsDetailVC=[[NewsDetailViewController alloc] initWithNibName:@"NewsDetailViewController" bundle:nil];
+    newsDetailVC.newsInfo=info;
+    [self.navigationController pushViewController:newsDetailVC animated:YES];
     
 }
 

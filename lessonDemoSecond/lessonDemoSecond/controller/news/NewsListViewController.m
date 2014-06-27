@@ -9,6 +9,7 @@
 #import "NewsListViewController.h"
 #import "NewsInfo.h"
 #import "NewsTableViewCell.h"
+#import "NewsDetailViewController.h"
 
 @interface NewsListViewController ()
 
@@ -60,7 +61,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
+    NewsInfo *info=news_[indexPath.row];
+    NSLog(@"id:%ld",info.newsId);
+    NewsDetailViewController *newsDetailVC=[[NewsDetailViewController alloc] initWithNibName:@"NewsDetailViewController" bundle:nil];
+    newsDetailVC.newsInfo=info;
+    [self.navigationController pushViewController:newsDetailVC animated:YES];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

@@ -13,6 +13,8 @@
     __weak IBOutlet UITableView *tableView_;
     NSInteger currentPage_;
     NSMutableArray *announcements_;
+    
+    MJRefreshBaseView *refreshView_;
 }
 
 @end

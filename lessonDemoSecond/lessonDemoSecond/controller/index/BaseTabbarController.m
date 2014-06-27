@@ -32,6 +32,7 @@
 @end
 
 @implementation BaseTabbarController
+@synthesize bgView_;
 
 #pragma mark - View lifecycle
 -(id)init{
