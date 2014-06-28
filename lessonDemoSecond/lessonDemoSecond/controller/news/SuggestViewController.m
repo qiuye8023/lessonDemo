@@ -40,7 +40,7 @@
 }
 
 -(IBAction)textChanged:(id)sender{
-    self.navigationItem.rightBarButtonItem.enabled=([titleField_.text length]>0 && contentTextView_.text>0);
+    self.navigationItem.rightBarButtonItem.enabled=([titleField_.text length]>0 && [contentTextView_.text length]>0);
 }
 
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -117,6 +117,21 @@
 }
 
 -(void)didSubmitBtnClick{
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    BaseService *base=[[BaseService alloc] init];
+    base.url=@"http://api.blbaidu.cn/API/MessAdd.ashx";
+    [base addParam:[savePath_ lastPathComponent] byKey:@"FileName"];
+    [base addParam:@(typeBtn_.tag) byKey:@"xingzhi"];
+    [base addParam:titleField_.text byKey:@"title"];
+    [base addParam:contentTextView_.text byKey:@"content"];
+    [base addParam:nameField_.text byKey:@"username"];
+    [base addParam:phoneField_.text byKey:@"tel"];
+    [base addParam:savePath_ byKey:@"File:Pic"];
+//    [base uploadWithCompletionHandler:^(NSData *responseData, NSURLResponse *response, NSError *error) {
+//        NSString *responseStr=[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+//        NSLog(@"error:%@",[error description]);
+//    }];
+    [base test:savePath_];
     
 }
 

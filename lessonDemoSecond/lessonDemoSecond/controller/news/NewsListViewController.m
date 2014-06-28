@@ -88,10 +88,14 @@
                     NewsInfo *newsInfo=[[NewsInfo alloc] initWithDictionary:newsDic];
                     [news_ addObject:newsInfo];
                 }
-                [tableview_ reloadData];
+                [self performSelectorOnMainThread:@selector(reload) withObject:nil waitUntilDone:YES];
             }
         }
     }];
+}
+
+-(void)reload{
+    [tableview_ reloadData];
 }
 
 @end

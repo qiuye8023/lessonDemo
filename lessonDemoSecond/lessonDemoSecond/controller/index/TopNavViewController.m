@@ -54,7 +54,6 @@
     CGRect rect=announcementListVC.view.frame;
     rect.origin.x=contentScrollView_.frame.size.width;
     announcementListVC.view.frame=rect;
-
 }
 
 - (void)didReceiveMemoryWarning

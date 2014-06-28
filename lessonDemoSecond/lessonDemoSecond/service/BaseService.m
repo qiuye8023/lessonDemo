@@ -40,7 +40,7 @@
         for(NSString *key in [params_ allKeys]){
             id value=[params_ objectForKey:key];
             NSString *param=[key stringByAppendingFormat:@"=%@",value];
-            [paramArr addObject:param];
+            [paramArr addObject:param];//param=value&param2=value2
         }
         NSString *paramStr=[paramArr componentsJoinedByString:@"&"];
         NSData *paramData=[paramStr dataUsingEncoding:NSUTF8StringEncoding];
@@ -53,6 +53,48 @@
         completionHandler(responseStr,response,error);
     }];
     [dataTask resume];
+}
+
+-(void)uploadWithCompletionHandler:(void (^)(NSData *, NSURLResponse *, NSError *))completionHandler{
+    NSURLSession *session=[NSURLSession sharedSession];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:_url]];
+    [request setHTTPMethod:@"POST"];
+//    [request addValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
+    //添加参数
+    NSString *filePath=nil;
+    if(params_){
+        NSMutableArray *paramArr=[NSMutableArray new];
+        for(NSString *key in [params_ allKeys]){
+            NSString *realKey=key;
+            id value=[params_ objectForKey:key];
+            if([key hasPrefix:@"File:"]){
+                filePath=value;
+                realKey=[key stringByReplacingOccurrencesOfString:@"File:" withString:@""];
+            }
+            NSString *param=[realKey stringByAppendingFormat:@"=%@",value];
+            [paramArr addObject:param];
+        }
+        NSString *paramStr=[paramArr componentsJoinedByString:@"&"];
+        NSData *paramData=[paramStr dataUsingEncoding:NSUTF8StringEncoding];
+        [request setHTTPBody:paramData];
+    }
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromFile:[NSURL fileURLWithPath:filePath] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if(completionHandler){
+            completionHandler(data,response,error);
+        }
+    }];
+    [uploadTask resume];
+    
+}
+
+-(void)test:(NSString *)filePath{
+    NSURLSession *session=[NSURLSession sharedSession];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:_url]];
+    [request setHTTPMethod:@"POST"];
+    NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromFile:[NSURL fileURLWithPath:filePath] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSLog(@"%@",[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    }];
+    [uploadTask resume];
 }
 
 @end

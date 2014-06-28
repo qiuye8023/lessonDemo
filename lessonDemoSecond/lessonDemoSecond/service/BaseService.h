@@ -26,4 +26,8 @@
 -(void)addParam:(id)paramValue byKey:(NSString *)key;
 -(void)requestWithCompletionHandler:(void (^)(NSString *responseStr, NSURLResponse *response, NSError *error))completionHandler;
 
+-(void)uploadWithCompletionHandler:(void (^)(NSData *responseData, NSURLResponse *response, NSError *error))completionHandler;
+
+-(void)test:(NSString *)filePath;
+
 @end

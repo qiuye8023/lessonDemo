@@ -73,7 +73,7 @@
                         NewsInfo *newsInfo=[[NewsInfo alloc] initWithDictionary:newsDic];
                         [announcements_ addObject:newsInfo];
                     }
-                    [tableView_ reloadData];
+                    [self performSelectorOnMainThread:@selector(reload) withObject:nil waitUntilDone:YES];
                 }
             }
         }
@@ -111,6 +111,10 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return announcements_?[announcements_ count]:0;
+}
+
+-(void)reload{
+    [tableView_ reloadData];
 }
 
 
